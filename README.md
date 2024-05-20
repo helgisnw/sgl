@@ -33,7 +33,7 @@ Seoul Global High School Lunch
     npm install
     ```
 
-4. Build frontend file(in frontend)
+4. Build frontend file(In \[YOUR_PROJECT_LOCATION\]/sgl/frontend)
 
     ```bash
     npm run build
