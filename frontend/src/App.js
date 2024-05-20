@@ -72,12 +72,22 @@ function Body() {
                             e.target.nextSibling.classList.remove("active");
                         }}
                     >
+                        조식
+                    </button>
+                    <button
+                        className="meal-type-button active"
+                        onClick={(e) => {
+                            setMealType(1);
+                            e.target.classList.add("active");
+                            e.target.nextSibling.classList.remove("active");
+                        }}
+                    >
                         중식
                     </button>
                     <button
                         className="meal-type-button"
                         onClick={(e) => {
-                            setMealType(1);
+                            setMealType(2);
                             e.target.classList.add("active");
                             e.target.previousSibling.classList.remove("active");
                         }}
@@ -128,7 +138,7 @@ function Header() {
 function Footer() {
     return (
         <div className="App-footer">
-            <p className="copyright">&copy; 2024 Yangcheon High School</p>
+            <p className="copyright">&copy; 2024 helgisnw</p>
         </div>
     );
 }
