@@ -1,7 +1,6 @@
 import logo from "./logo.png";
 import "./App.css";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
     return (
@@ -34,6 +33,13 @@ function Body() {
         getMeal(today);
     }, []);
 
+    const handleButtonClick = (e, type) => {
+        setMealType(type);
+        const buttons = document.querySelectorAll('.meal-type-button');
+        buttons.forEach(button => button.classList.remove('active'));
+        e.target.classList.add('active');
+    };
+
     return (
         <div className="App-body">
             <div className="meal">
@@ -65,32 +71,20 @@ function Body() {
                 </div>
                 <div className="meal-type-selector">
                     <button
-                        className="meal-type-button active"
-                        onClick={(e) => {
-                            setMealType(0);
-                            e.target.classList.add("active");
-                            e.target.nextSibling.classList.remove("active");
-                        }}
+                        className={`meal-type-button ${mealType === 0 ? 'active' : ''}`}
+                        onClick={(e) => handleButtonClick(e, 0)}
                     >
                         조식
                     </button>
                     <button
-                        className="meal-type-button active"
-                        onClick={(e) => {
-                            setMealType(1);
-                            e.target.classList.add("active");
-                            e.target.nextSibling.classList.remove("active");
-                        }}
+                        className={`meal-type-button ${mealType === 1 ? 'active' : ''}`}
+                        onClick={(e) => handleButtonClick(e, 1)}
                     >
                         중식
                     </button>
                     <button
-                        className="meal-type-button"
-                        onClick={(e) => {
-                            setMealType(2);
-                            e.target.classList.add("active");
-                            e.target.previousSibling.classList.remove("active");
-                        }}
+                        className={`meal-type-button ${mealType === 2 ? 'active' : ''}`}
+                        onClick={(e) => handleButtonClick(e, 2)}
                     >
                         석식
                     </button>
