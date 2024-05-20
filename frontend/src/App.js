@@ -120,7 +120,7 @@ function Body() {
 function Header() {
     return (
         <div className="App-header">
-            <h1>양천고 급식</h1>
+            <h1>서울국제고 급식</h1>
         </div>
     );
 }
