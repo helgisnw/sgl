@@ -1,6 +1,6 @@
 # ycl
 
-Yangcheon Highschool Lunch
+Seoul Global High School Lunch
 
 ## Installation & Usage
 
@@ -37,8 +37,8 @@ Yangcheon Highschool Lunch
 
     ```bash
     npm run build
-    (in frontend)
     ```
+    (in frontend)
 
 5. Move build folder in src
 
