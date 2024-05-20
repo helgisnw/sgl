@@ -51,15 +51,25 @@ app.get("/meal", async (req, res) => {
                 return;
             }
         }
-        const lunch_DDISH_NM = mealServiceDietInfo[1]?.row[0]?.DDISH_NM;
-        const dinner_DDISH_NM = mealServiceDietInfo[1]?.row[1]?.DDISH_NM;
-        let lunch_CAL_INFO = mealServiceDietInfo[1]?.row[0]?.CAL_INFO;
-        let dinner_CAL_INFO = mealServiceDietInfo[1]?.row[1]?.CAL_INFO;
+        const bf_DDISH_NM = mealServiceDietInfo[1]?.row[0]?.DDISH_NM;
+        const lunch_DDISH_NM = mealServiceDietInfo[1]?.row[1]?.DDISH_NM;
+        const dinner_DDISH_NM = mealServiceDietInfo[1]?.row[2]?.DDISH_NM;
+        let bf_CAL_INFO = mealServiceDietInfo[1]?.row[0]?.CAL_INFO;
+        let lunch_CAL_INFO = mealServiceDietInfo[1]?.row[1]?.CAL_INFO;
+        let dinner_CAL_INFO = mealServiceDietInfo[1]?.row[2]?.CAL_INFO;
 
         const regex =
             /\([^()]+\)|\/자율|\(완\)|\(선\)|\(교\)|\(주\)|\(해당없음\)|\(양천\)/g;
 
         // TODO: later, we need to remove ?. and replace with something beutiful
+
+        const bfMealDataString = bf_DDISH_NM
+            ?.replace(/\([^()]+\)|/, "")
+            ?.replace(regex, "");
+
+        let bfMealData = bfMealDataString
+            ?.split("<br/>")
+            ?.map((element) => element.trim());
 
         const lunchMealDataString = lunch_DDISH_NM
             ?.replace(/\([^()]+\)|/, "")
@@ -76,7 +86,11 @@ app.get("/meal", async (req, res) => {
         let dinnerMealData = dinnerMealDataString
             ?.split("<br/>")
             ?.map((element) => element.trim());
-
+        if (!bfMealData){
+            lunchMealData = ["오늘은 점심이 없습니다."];
+            dinner_CAL_INFO = "오늘은 점심이 없습니다.";
+        }
+            
         if (!lunchMealData) {
             lunchMealData = ["오늘은 점심이 없습니다."];
             dinner_CAL_INFO = "오늘은 점심이 없습니다.";
@@ -88,8 +102,8 @@ app.get("/meal", async (req, res) => {
         }
 
         res.send({
-            meal: [lunchMealData, dinnerMealData],
-            cal: [lunch_CAL_INFO, dinner_CAL_INFO],
+            meal: [bfMealData, lunchMealData, dinnerMealData],
+            cal: [bf_CAL_INFO, lunch_CAL_INFO, dinner_CAL_INFO],
         });
     } catch (error) {
         console.error(error);
