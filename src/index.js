@@ -8,7 +8,7 @@ const port = 5000;
 const APIKEY = process.env.APIKEY;
 
 const ATPT_OFCDC_SC_CODE = "B10";
-const SD_SCHUL_CODE = "7010209";
+const SD_SCHUL_CODE = "7010817";
 
 if (!APIKEY) {
     console.log("[YCL] API KEY is not loaded");
