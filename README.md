@@ -33,12 +33,11 @@ Seoul Global High School Lunch
     npm install
     ```
 
-4. Build frontend file
+4. Build frontend file(in frontend)
 
     ```bash
     npm run build
     ```
-    (in frontend)
 
 5. Move build folder in src
 
